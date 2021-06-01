@@ -1,0 +1,10 @@
+http {
+    server{
+        listen 80;
+        location / {
+            http://192.168.132.130:30000/;
+        }
+    }
+}
+
+events { }
