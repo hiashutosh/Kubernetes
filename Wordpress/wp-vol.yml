@@ -1,0 +1,60 @@
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: wp-vol
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity: 
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/ubuntu/wp-k8s/wp-data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: wordpress
+    tier: frontend
+  name: wp-vol-claim
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: db-vol
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity: 
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/ubuntu/wp-k8s/db"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app: wordpress
+    tier: mysql
+  name: db-vol-claim
+spec:
+  storageClassName: manual
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi

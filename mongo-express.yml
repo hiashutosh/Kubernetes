@@ -1,4 +1,5 @@
---- # mongo express deployment
+--- 
+# mongo express deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -36,8 +37,8 @@ spec:
             configMapKeyRef:
               name: mongodb-configmap
               key: database_url
---- #end 
---- # Mongo express service
+--- 
+# Mongo express service
 apiVersion: v1
 kind: Service
 metadata: 
@@ -51,4 +52,5 @@ spec:
       port: 8081
       targetPort: 8081
       nodePort: 30000
---- # end
+---
+ # end

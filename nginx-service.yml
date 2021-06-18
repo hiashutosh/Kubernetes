@@ -8,5 +8,9 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 80
+      nodePort: 30000
   type: LoadBalancer
+# provide master ip as externalIP
+  externalIPs:
+    - 192.168.132.143
