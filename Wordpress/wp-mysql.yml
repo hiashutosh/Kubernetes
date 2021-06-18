@@ -84,9 +84,6 @@ spec:
     app: wordpress
     tier: mysql
   clusterIP: None
-  type: LoadBalancer
-  externalIPs:
-    - 192.168.132.143
 
 
 
