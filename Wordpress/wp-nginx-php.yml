@@ -64,9 +64,6 @@ spec:
           mountPath: /etc/nginx/conf.d/
         - name: wordpress-vol
           mountPath: /var/www/html/
-        - name: wp-config
-          mountPath: /var/www/html/
-          subPath: wp-config.php
         ports:
         - containerPort: 80
       - image: php:8.0-fpm
@@ -76,6 +73,9 @@ spec:
         volumeMounts:
         - name: wordpress-vol
           mountPath: /var/www/html/
+        - name: wp-config
+          mountPath: /var/www/html/wp-config.php
+          subPath: wp-config.php
         ports:
         - containerPort: 9000
           name: wp-php
