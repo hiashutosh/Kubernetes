@@ -51,8 +51,8 @@ spec:
         configMap:
           name: nginx-conf
       - name: wp-config
-        configMap:
-          name: wp-config
+        secret:
+          secretName: wp-config
       - name: wordpress-vol
         persistentVolumeClaim:
           claimName: wp-vol-claim
