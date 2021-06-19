@@ -1,32 +1,3 @@
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: mysql-pv
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/home/ubuntu/wp-k8s/db"
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: mysql-pv-claim
-  labels:
-    app: wordpress
-    tier: mysql
-spec:
-  storageClassName: manual
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -47,6 +18,8 @@ spec:
         app: wordpress
         tier: mysql
     spec: 
+      nodeSelector:
+        vol: db
       containers:
       - image: mariadb
         name: mysql
@@ -84,7 +57,3 @@ spec:
     app: wordpress
     tier: mysql
   clusterIP: None
-
-
-
-    

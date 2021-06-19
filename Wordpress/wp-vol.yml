@@ -12,7 +12,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/home/ubuntu/wp-k8s/wp-data"
+    path: "/home/ubuntu/wp-k8s/wordpress"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -32,12 +32,12 @@ spec:
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: db-vol
+  name: mysql-pv
   labels:
     type: local
 spec:
   storageClassName: manual
-  capacity: 
+  capacity:
     storage: 1Gi
   accessModes:
     - ReadWriteOnce
@@ -47,14 +47,14 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
+  name: mysql-pv-claim
   labels:
     app: wordpress
     tier: mysql
-  name: db-vol-claim
 spec:
   storageClassName: manual
   accessModes:
-  - ReadWriteOnce
+    - ReadWriteOnce
   resources:
     requests:
       storage: 1Gi
